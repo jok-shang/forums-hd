@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forums.admin.mapper.UserMapper">
+    <resultMap type="com.forums.model.pojo.User" id="UserinfoResult">
+        <result property="uid"    column="uid"    />
+        <result property="username"    column="username"    />
+        <result property="password"    column="password"    />
+        <result property="email"    column="email"    />
+        <result property="createTime"    column="createtime"    />
+        <result property="headImage"    column="headimage"    />
+        <result property="isDelete"    column="isdelete"    />
+        <result property="salt"    column="salt"/>
+    </resultMap>
+
+    <!--  查询用户名是否存在  -->
+        <select id="selectUsername" resultType="com.forums.model.pojo.User" parameterType="java.lang.Integer">
+            select * from userinfo where uid = #{uid}
+        </select>
+        <!-- 通过Email查询用户所有信息 -->
+<!--        <select id="selectAllUser" resultMap="UserinfoResult" parameterType="com.forum.model.pojo.User">-->
+<!--            SELECT * from userinfo WHERE email = #{email}-->
+<!--        </select>-->
+</mapper>

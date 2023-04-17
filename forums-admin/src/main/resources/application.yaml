@@ -1,0 +1,37 @@
+#七牛云配置
+oss:
+  qiniu:
+    url: http://image.szj.icu
+    accessKey: X46yk_LGEtRxth8E5ORMxkX8HEzNSL1wMpXY_liq
+    secretKey: HHzNcNH5XWZ3ZnALNBu2vJhQYrEL-RFVuvwW7qxx
+    bucketName: ssimages
+
+#spring配置
+spring:
+#reids配置
+  redis:
+    host: 47.107.225.176 #redis上服务器需要改
+    port: 6379
+    database: 0
+
+# 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/forum?serverTimezone=UTC
+    #    username: root
+    #    password: 1234
+    url: jdbc:mysql://47.107.225.176:3306/success?serverTimezone=UTC
+    username: success
+    password: 1234
+
+#端口号配置
+server:
+  port: 8808
+  #参数过长
+  max-http-header-size: 4048576
+
+#Mybatis配置
+mybatis-plus:
+  mapper-locations: classpath*:/mybatis/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
