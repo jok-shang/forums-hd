@@ -25,7 +25,7 @@
     <select id="selectSectionList" resultMap="SenctionResult">
         SELECT * from section LEFT JOIN wenzhang on
             wenzhang.sid = section.sid
-        WHERE section.sid = #{sid}
+        WHERE wenzhang.sid = #{sid} AND wenzhang.isDelete = 0
     </select>
 
 </mapper>
