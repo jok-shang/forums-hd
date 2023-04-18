@@ -89,7 +89,7 @@ public class UpdateUserController {
      * @param user
      * @return
      */
-    @PostMapping("/uupdateUser")
+    @PostMapping("/updateUser")
     public Result updateUser(@RequestBody User user){
         boolean b = userService.updateUserById(user);
         return b ? Result.ok().message("修改成功") : Result.fail().message("修改失败");
