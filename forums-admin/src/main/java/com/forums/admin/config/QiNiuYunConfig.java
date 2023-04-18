@@ -23,4 +23,5 @@ public class QiNiuYunConfig {
 
     @Value("${oss.qiniu.bucketName}")
     private String BucketName;
+
 }

@@ -29,4 +29,7 @@ public interface UserService extends IService<User> {
 
     // 修改用户密码
     boolean updatePassword(User user);
+
+    // 修改用户信息
+    boolean updateUserById(User user);
 }

@@ -50,6 +50,26 @@ public class User {
     @TableField("salt")
     private String salt;
 
+    /** 年龄 */
+    @TableField("age")
+    private Integer age;
+
+    /** 性别 */
+    @TableField("gender")
+    private Integer gender;
+
+    /** 爱好 */
+    @TableField("hobby")
+    private String hobby;
+
+    /** 职业 */
+    @TableField("job")
+    private String job;
+
+    /**  座右铭 */
+    @TableField("motto")
+    private String motto;
+
     /** 用户token */
     @TableField(exist = false)
     private String token;

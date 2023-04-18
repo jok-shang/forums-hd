@@ -159,5 +159,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return false;
     }
 
+    @Override
+    public boolean updateUserById(User user) {
+        int i = userMapper.updateById(user);
+        return i > 0;
+    }
+
 
 }

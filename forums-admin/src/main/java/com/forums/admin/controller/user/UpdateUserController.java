@@ -1,5 +1,7 @@
 package com.forums.admin.controller.user;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.forums.admin.service.UploadImageService;
 import com.forums.admin.service.UserService;
 import com.forums.model.pojo.User;
@@ -49,10 +51,8 @@ public class UpdateUserController {
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
         // TODO 查询redis中的验证码
         String yzm = user.getYzm();
-//        System.out.println(userUPPasswordVO.getEmail()+"////"+yzm);
         // TODO 判断用户输入的验证码和redis中是否一致
         if (yzm.equals(operations.get(user.getEmail()))){
-//            System.out.println(yzm+"===="+userUPPasswordVO.getYzm());
             boolean b = userService.updatePassword(user);
             // TODO 判断用户修改是否成功
             if (b){
@@ -60,7 +60,6 @@ public class UpdateUserController {
             }
             return Result.fail().message("修改密码异常");
         }
-//        System.out.println(yzm.equals(userUPPasswordVO.getEmail()));
         return Result.fail().message("验证码错误");
     }
     /**
@@ -83,5 +82,42 @@ public class UpdateUserController {
         }
         return Result.fail();
     }
+
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @PostMapping("/uupdateUser")
+    public Result updateUser(@RequestBody User user){
+        boolean b = userService.updateUserById(user);
+        return b ? Result.ok().message("修改成功") : Result.fail().message("修改失败");
+
+    }
+    /**
+     * 修改用户头像
+     */
+    @PostMapping("updateImage")
+    public Result updateImage(@RequestParam("file") MultipartFile file,
+                              @RequestParam("uid") Integer uid){
+        String result = "失败";
+        if(!file.isEmpty()){
+            String path = uploadImageService.uploadQNImg(file);
+            if(path.equals(result)){
+                return Result.fail();
+            }else{
+                UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+                updateWrapper.eq("uid",uid);
+                updateWrapper.set("headimage",path);
+                userService.update(updateWrapper);
+                return Result.ok().message("头像修改成功");
+            }
+        }
+        return Result.fail().message("头像修改失败");
+    }
+
+
+
 
 }

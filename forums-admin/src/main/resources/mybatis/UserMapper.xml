@@ -18,8 +18,5 @@
         <select id="selectUsername" resultType="com.forums.model.pojo.User" parameterType="java.lang.Integer">
             select * from userinfo where uid = #{uid}
         </select>
-        <!-- 通过Email查询用户所有信息 -->
-<!--        <select id="selectAllUser" resultMap="UserinfoResult" parameterType="com.forum.model.pojo.User">-->
-<!--            SELECT * from userinfo WHERE email = #{email}-->
-<!--        </select>-->
+
 </mapper>

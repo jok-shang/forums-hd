@@ -18,6 +18,17 @@ public class TestController {
 
     @Autowired
     private UserService userService;
+
+
+    /**
+     *
+     *
+     * 测试接口
+     * 临时接口专用
+     *
+     *
+     * @return
+     */
     @GetMapping("test")
     public Result<User> a(){
         System.out.println(userService.selectUsername(10));
