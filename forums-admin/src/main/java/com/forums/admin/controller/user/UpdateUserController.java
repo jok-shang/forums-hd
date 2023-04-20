@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.forums.admin.service.UploadImageService;
 import com.forums.admin.service.UserService;
+import com.forums.admin.util.MD5Utils;
 import com.forums.model.pojo.User;
 import com.forums.model.result.Result;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * @auther 尚智江
@@ -91,6 +93,17 @@ public class UpdateUserController {
      */
     @PostMapping("/updateUser")
     public Result updateUser(@RequestBody User user){
+        // 将密码解密
+        // TODO 重新写service
+        String oldPassword = user.getPassword();
+        // 随机生成盐值
+        String salt = UUID.randomUUID().toString().toUpperCase();
+        // 调用 md5 算法加密
+        MD5Utils md5Utils = new MD5Utils();
+        String md5Password = md5Utils.getMD5Password(oldPassword, salt);
+        // 插入用户修改后的密码及其盐值
+        user.setSalt(salt);
+        user.setPassword(md5Password);
         boolean b = userService.updateUserById(user);
         return b ? Result.ok().message("修改成功") : Result.fail().message("修改失败");
 
@@ -116,8 +129,4 @@ public class UpdateUserController {
         }
         return Result.fail().message("头像修改失败");
     }
-
-
-
-
 }

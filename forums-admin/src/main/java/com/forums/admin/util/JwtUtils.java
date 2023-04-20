@@ -21,7 +21,7 @@ public class JwtUtils {
      * 创建token
      * @return string
      */
-    public String creatToken(User user){
+    public String creatToken( User user){
         JwtBuilder jwtBuilder = Jwts.builder();
         return jwtBuilder
                 //TODO header 头部信息
@@ -29,8 +29,6 @@ public class JwtUtils {
                 .setHeaderParam("alg","HS256")
                 //TODO payload 负载
                 .claim("uid",user.getUid())
-                .claim("username",user.getUsername())
-                .claim("headImage",user.getHeadImage())
                 //TODO 用户类型
                 .claim("role","admin")
                 // TODO 签名

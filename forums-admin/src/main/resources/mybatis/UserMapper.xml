@@ -19,4 +19,5 @@
             select * from userinfo where uid = #{uid}
         </select>
 
+
 </mapper>
