@@ -8,20 +8,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @auther 尚智江
- * @Date 2023/4/18 21:13
+ * @Date 2023/4/20 23:16
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("study_neirong")
-public class StudyNeiRong {
+@TableName("dianzan")
+public class DianZan {
 
-    /* 学习内容id */
-    @TableId(value = "sid",type = IdType.AUTO)
-    private Integer sid;
-    /* 内容 */
-    @TableField("sneirong")
-    private String sneirong;
+    @TableId(value = "did", type = IdType.AUTO)
+    private Integer did;
+
+    @TableField("uid")
+    private Integer uid;
+
+    @TableField("tid")
+    private Integer tid;
+
+    @TableField("createTime")
+    private Date createTime;
+
 }

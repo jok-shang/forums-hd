@@ -1,5 +1,6 @@
 package com.forums.model.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -20,7 +21,9 @@ import java.util.List;
 @NoArgsConstructor
 @TableName("study_direct")
 public class Study {
-    @TableId
+
+
+    @TableId(value = "sid",type = IdType.AUTO)
     private Long sid;
 
     @TableField("sname")

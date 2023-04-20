@@ -18,6 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class WenZhang {
+
     @TableId(value = "tid", type = IdType.AUTO)
     private Integer tid;
 
