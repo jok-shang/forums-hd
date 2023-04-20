@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @auther 尚智江
  * @Date 2023/4/18 10:30
@@ -28,6 +31,9 @@ public class Study {
 
     @TableField("value")
     private Long value;
+
+    @TableField(exist = false)
+    private List<Study> child = new ArrayList<>();
 
     @TableField(exist = false)
     private boolean hasChildren;
