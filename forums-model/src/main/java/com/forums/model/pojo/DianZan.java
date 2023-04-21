@@ -30,7 +30,10 @@ public class DianZan {
     @TableField("tid")
     private Integer tid;
 
-    @TableField("createTime")
+    @TableField("create_time")
     private Date createTime;
+
+    @TableField(exist = false)
+    private Integer count;
 
 }
