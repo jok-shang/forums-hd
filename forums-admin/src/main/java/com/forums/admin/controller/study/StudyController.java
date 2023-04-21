@@ -37,7 +37,7 @@ public class StudyController {
     }
 
     // 根据value 查询内容
-    @PostMapping("/getValue/{sid}")
+    @GetMapping("/getValue/{sid}")
     public Result findValue(@PathVariable Integer sid){
         StudyNeiRong byId = studyNeiRongService.getById(sid);
         return Result.ok(byId);
