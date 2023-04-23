@@ -40,9 +40,13 @@ public class UserShowController {
      * @param uid  当前登录用户的uid
      * @return
      */
-    @GetMapping("dianZanList/{uid}")
-    public Result dianZanList(@PathVariable Integer uid){
-        List<DianZan> list = dianZanService.selectDianZanList(uid);
+    @GetMapping("dianZanList/{current}/{limit}/{uid}")
+    public Result dianZanList(@PathVariable Integer current,
+                              @PathVariable Integer limit,
+                              @PathVariable Integer uid){
+        Page<DianZan> page = new Page<>(current,limit);
+        Page<DianZan> list = dianZanService.selectDianZanList(page,uid);
+
         return Result.ok(list);
     }
 

@@ -2,14 +2,17 @@ package com.forums.admin.controller.wenzhang;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.forums.admin.service.UploadImageService;
 import com.forums.admin.service.WenZhangService;
 import com.forums.model.pojo.WenZhang;
 import com.forums.model.result.Result;
+import com.forums.model.result.WangEditorVO;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @auther 尚智江
@@ -21,9 +24,26 @@ public class WenZhangController {
 
     @Resource
     private WenZhangService wenZhangService;
+    @Resource
+    private UploadImageService uploadImageService;
 
 
-
+    @PostMapping("/wzuploadImage")
+    public WangEditorVO WzUploadImage(@RequestParam(value = "file",required = false) MultipartFile file){
+//        List<Map> list = new ArrayList<>();
+        HashMap<String,Object> map = new HashMap<>();
+        if (!file.isEmpty()){
+            String path = uploadImageService.uploadQNImg(file);
+            if (path.equals("失败")){
+                return WangEditorVO.error(3,"上传失败");
+            }else {
+                map.put("url",path);
+//                list.add(map);
+                return WangEditorVO.success(map);
+            }
+        }
+        return WangEditorVO.error(3,"上传失败");
+    }
 
     /**
      * 发布文章

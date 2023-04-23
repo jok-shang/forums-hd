@@ -1,7 +1,10 @@
 package com.forums.admin;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.forums.admin.mapper.DianZanMapper;
 import com.forums.admin.mapper.PingLunMapper;
 import com.forums.admin.service.PingLunService;
+import com.forums.model.pojo.DianZan;
 import com.forums.model.pojo.PingLun;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +21,8 @@ public class TestA {
 
     @Resource
     private PingLunService pingLunService;
+    @Resource
+    private DianZanMapper dianZanMapper;
 
 
 
@@ -32,9 +37,10 @@ public class TestA {
         }
     }
 
-//    @Test
-//    public void b(){
-//        List<PingLun> pl = pingLunService.getPl(1);
-//        System.out.println(pl);
-//    }
+    @Test
+    public void b(){
+        Page<DianZan> page = new Page<>(1,2);
+        Page<DianZan> dianZanPage = dianZanMapper.selectDianZanList(page, 18);
+        System.out.println(dianZanPage);
+    }
 }

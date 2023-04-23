@@ -2,6 +2,7 @@ package com.forums.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.forums.admin.mapper.DianZanMapper;
 import com.forums.admin.mapper.WenZhangMapper;
@@ -87,9 +88,11 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
         return true;
     }
 
+
+
     @Override
-    public List<DianZan> selectDianZanList(Integer uid) {
-        List<DianZan> dianZans = dianZanMapper.selectDianZanList(uid);
+    public Page<DianZan> selectDianZanList(Page<DianZan> page,Integer uid) {
+        Page<DianZan> dianZans = dianZanMapper.selectDianZanList(page,uid);
         return dianZans;
     }
 }

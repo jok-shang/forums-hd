@@ -1,5 +1,6 @@
 package com.forums.admin.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.forums.model.pojo.DianZan;
 import com.forums.model.vo.DianZanVO;
@@ -17,5 +18,5 @@ public interface DianZanService extends IService<DianZan> {
     boolean dianZan(DianZan dianZan);
 
     // 用户查看自己点赞的列表
-    List<DianZan> selectDianZanList(Integer uid);
+    Page<DianZan> selectDianZanList(Page<DianZan> page,Integer uid);
 }
