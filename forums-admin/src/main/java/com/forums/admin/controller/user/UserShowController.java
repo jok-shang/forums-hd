@@ -1,6 +1,7 @@
 package com.forums.admin.controller.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.forums.admin.service.DianZanService;
 import com.forums.admin.service.UserService;
 import com.forums.admin.service.WenZhangService;
@@ -45,11 +46,15 @@ public class UserShowController {
         return Result.ok(list);
     }
 
-    @GetMapping("findAllwzByUserId/{uid}")
-    public Result findAll(@PathVariable Integer uid){
+    @GetMapping("findAllwzByUserId/{current}/{limit}/{uid}")
+    public Result findAll(@PathVariable Integer current,
+                          @PathVariable Integer limit,
+                          @PathVariable Integer uid){
+        Page<WenZhang> page = new Page<>(current,limit);
         QueryWrapper<WenZhang> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",uid);
-        List<WenZhang> list = wenZhangService.list(queryWrapper);
+//        List<WenZhang> list = wenZhangService.list(queryWrapper);
+        Page<WenZhang> list = wenZhangService.page(page, queryWrapper);
         return Result.ok(list);
     }
 }
