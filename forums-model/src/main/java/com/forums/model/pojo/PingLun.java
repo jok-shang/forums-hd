@@ -37,7 +37,10 @@ public class PingLun {
     private Date createTime;
 
     @TableField(exist = false)
-    private List<PingLun> pingLunList;
+    private User user;
+
+//    @TableField(exist = false)
+//    private List<PingLun> pingLunList;
 
 
 

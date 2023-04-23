@@ -14,5 +14,5 @@ import java.util.List;
 @Service
 public interface PingLunService extends IService<PingLun> {
 
-//    List<PingLun> getPl(Integer tid);
+    List<PingLun> plList(Integer tid);
 }

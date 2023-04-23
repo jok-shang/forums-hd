@@ -24,6 +24,9 @@ public class TestA {
     @Resource
     private DianZanMapper dianZanMapper;
 
+    @Resource
+    private PingLunMapper pingLunMapper;
+
 
 
     @Test
@@ -43,4 +46,11 @@ public class TestA {
         Page<DianZan> dianZanPage = dianZanMapper.selectDianZanList(page, 18);
         System.out.println(dianZanPage);
     }
+
+    @Test
+    public void e(){
+        List<PingLun> list = pingLunMapper.selectPL(1);
+        System.out.println(list);
+    }
+
 }

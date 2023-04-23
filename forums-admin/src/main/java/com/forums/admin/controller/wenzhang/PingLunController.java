@@ -1,5 +1,6 @@
 package com.forums.admin.controller.wenzhang;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.forums.admin.service.PingLunService;
 import com.forums.model.pojo.PingLun;
 import com.forums.model.result.Result;
@@ -34,10 +35,9 @@ public class PingLunController {
         return save ? Result.ok().message("发表评论成功") : Result.fail().message("发表评论失败");
     }
 
-//    @GetMapping("getPl/{tid}")
-//    public Result getPl(@PathVariable Integer tid){
-//        System.out.println(tid);
-//        List<PingLun> pl = pingLunService.getPl(tid);
-//        return Result.ok(pl);
-//    }
+    @GetMapping("getPl/{tid}")
+    public Result getPl(@PathVariable Integer tid){
+        List<PingLun> list = pingLunService.plList(tid);
+        return Result.ok(list);
+    }
 }

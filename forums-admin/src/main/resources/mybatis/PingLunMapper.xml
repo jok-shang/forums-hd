@@ -3,4 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forums.admin.mapper.PingLunMapper">
+
+    <select id="findAllByTid" resultType="com.forums.model.pojo.PingLun">
+        select * from pinglun where tid = #{tid}
+    </select>
+
+    <resultMap type="com.forums.model.pojo.PingLun" id="PinglunResult">
+    <id property="pid"    column="pid"    />
+    <result property="tid"    column="tid"    />
+    <result property="uid"    column="uid"    />
+    <result property="createTime" column="createtime"/>
+        <result property="pneirong" column="pneirong"/>
+        <collection property="user" ofType="com.forums.model.pojo.User">
+        <id property="uid"    column="tid"    />
+        <result property="uid"    column="uid"    />
+        <result property="username"    column="username"    />
+        <result property="headImage"    column="headimage"    />
+    </collection>
+    </resultMap>
+
+    <select id="selectPL" resultMap="PinglunResult">
+        SELECT pinglun.pid,pinglun.pneirong,pinglun.createtime,
+               userinfo.uid,userinfo.headimage,userinfo.username
+                   from pinglun LEFT JOIN userinfo on
+            pinglun.uid = userinfo.uid
+        WHERE pinglun.tid = 1
+    </select>
+
 </mapper>
