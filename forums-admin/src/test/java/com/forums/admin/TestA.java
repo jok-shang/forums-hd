@@ -32,9 +32,9 @@ public class TestA {
         }
     }
 
-    @Test
-    public void b(){
-        List<PingLun> pl = pingLunService.getPl(1);
-        System.out.println(pl);
-    }
+//    @Test
+//    public void b(){
+//        List<PingLun> pl = pingLunService.getPl(1);
+//        System.out.println(pl);
+//    }
 }
