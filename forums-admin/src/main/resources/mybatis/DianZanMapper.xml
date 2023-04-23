@@ -38,13 +38,11 @@
         </collection>
     </resultMap>
     <select id="selectDianZanList" resultMap="DianZanResult">
-        SELECT dianzan.create_time,dianzan.did,
-               wenzhang.tid,wenzhang.biaoti,wenzhang.neirong,
-               userinfo.uid,userinfo.username,userinfo.headimage
-        from dianzan
-                 INNER JOIN wenzhang on wenzhang.tid = dianzan.tid
-                 INNER JOIN userinfo on userinfo.uid = dianzan.uid
-        WHERE userinfo.uid = #{uid}
+        SELECT wenzhang.biaoti,wenzhang.neirong,userinfo.username,userinfo.headimage
+        FROM wenzhang,userinfo
+        WHERE wenzhang.tid in
+              (SELECT tid from dianzan WHERE uid = #{uid})
+          AND wenzhang.uid=userinfo.uid
     </select>
 
 </mapper>

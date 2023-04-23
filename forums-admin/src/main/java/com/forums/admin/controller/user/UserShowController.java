@@ -21,6 +21,7 @@ import java.util.List;
 public class UserShowController {
 
     /*
+    个人文章列表
     点赞列表
     收藏列表
      */

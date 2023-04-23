@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @auther 尚智江
  * @Date 2023/4/21 19:30
@@ -28,9 +31,14 @@ public class PingLun {
     private Integer parentId;
 
     @TableField("pneirong")
-    private String pNeiRong;
+    private String pneirong;
 
     @TableField("createtime")
-    private String createTimel;
+    private Date createTime;
+
+    @TableField(exist = false)
+    private List<PingLun> pingLunList;
+
+
 
 }
