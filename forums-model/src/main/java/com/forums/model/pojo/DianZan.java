@@ -36,4 +36,10 @@ public class DianZan {
     @TableField(exist = false)
     private Integer count;
 
+    @TableField(exist = false)
+    private User user;
+
+    @TableField(exist = false)
+    private WenZhang wenZhang;
+
 }

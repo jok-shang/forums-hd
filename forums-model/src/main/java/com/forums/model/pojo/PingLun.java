@@ -24,13 +24,13 @@ public class PingLun {
     @TableField("uid")
     private Integer uid;
 
+    @TableField("parent_id")
+    private Integer parentId;
+
     @TableField("pneirong")
     private String pNeiRong;
 
     @TableField("createtime")
     private String createTimel;
 
-    @TableLogic(value = "0", delval = "1")
-    @TableField(value = "isdelete", fill = FieldFill.INSERT)
-    private Integer isDelete;
 }

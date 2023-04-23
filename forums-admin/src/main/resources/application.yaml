@@ -8,7 +8,10 @@ oss:
 
 #spring配置
 spring:
-#reids配置
+  # 过滤参数为null
+  jackson:
+    default-property-inclusion: non_null
+  #reids配置
   redis:
     host: 47.107.225.176 #redis上服务器需要改
     port: 6379

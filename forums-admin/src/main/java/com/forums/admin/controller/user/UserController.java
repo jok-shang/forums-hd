@@ -82,7 +82,7 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody User user){
         User one = userService.selectUserByEmail(user.getEmail());
-        System.out.println(one);
+//        System.out.println(one);
         try {
 //            System.out.println(one);
             // TODO 用户输入密码加密步骤

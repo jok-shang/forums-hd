@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @auther 尚智江
@@ -63,7 +64,7 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
             // 向点赞表中插入数据
             dianZan.setCreateTime(new Date());
             int insert = dianZanMapper.insert(dianZan);
-            return insert > 1;
+            return insert > 0;
         }
         /*
         判断用户是否是第二次点赞
@@ -84,5 +85,11 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
             return i > 0;
         }
         return true;
+    }
+
+    @Override
+    public List<DianZan> selectDianZanList(Integer uid) {
+        List<DianZan> dianZans = dianZanMapper.selectDianZanList(uid);
+        return dianZans;
     }
 }
