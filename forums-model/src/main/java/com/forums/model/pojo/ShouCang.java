@@ -30,5 +30,13 @@ public class ShouCang {
     @TableField("create_time")
     private Date createTime;
 
+    @TableField(exist = false)
+    private Integer count;
+
+    @TableField(exist = false)
+    private User user;
+
+    @TableField(exist = false)
+    private WenZhang wenZhang;
 
 }

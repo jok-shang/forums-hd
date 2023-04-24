@@ -36,9 +36,8 @@ public class DianZanController {
     public Result dianZan(@RequestBody DianZan dianZan){
         Integer a = dianZan.getCount();
         boolean b = dianZanService.dianZan(dianZan);
-//        System.out.println(b +","+ (dianZan.getCount() > 0)+"======");
         if ((a > 0)){
-            System.out.println(b +","+ (dianZan.getCount() > 0)+"======");
+//            System.out.println(b +","+ (dianZan.getCount() > 0)+"======");
             return Result.ok().message("点赞成功~");
         }
         if ((a < 0)){

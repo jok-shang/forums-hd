@@ -96,6 +96,10 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
         return dianZans;
     }
 
+    /*
+    返回true说明用户已经点赞过
+    false说明用户未点过或者已经取消点赞
+     */
     @Override
     public boolean isToStart(Integer tid, Integer uid) {
         Integer count = dianZanMapper.getCount(tid, uid);

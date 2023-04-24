@@ -10,4 +10,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ShouCangService extends IService<ShouCang> {
+    // 收藏操作
+    boolean shoucang(ShouCang shouCang);
 }

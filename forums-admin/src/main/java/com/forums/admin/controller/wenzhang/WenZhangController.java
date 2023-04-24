@@ -67,6 +67,8 @@ public class WenZhangController {
     public Result insertWenZhang(@RequestBody WenZhang wz){
         wz.setCreateTime(new Date());
         wz.setIsDelete(0);
+        wz.setTShou(0);
+        wz.setTStart(0);
         boolean save = wenZhangService.save(wz);
         if (save)
             return Result.ok().message("发布成功");
