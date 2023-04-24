@@ -1,6 +1,5 @@
 package com.forums.admin.controller.wenzhang;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.forums.admin.service.PingLunService;
 import com.forums.model.pojo.PingLun;
 import com.forums.model.result.Result;
@@ -24,8 +23,8 @@ public class PingLunController {
 
     /**
      * 发布评论接口
-     * @param pingLun
-     * @return
+     * @param pingLun  pinglun实体类
+     * @return  result
      */
     @PostMapping("insertPL")
     public Result insertPingLun(@RequestBody PingLun pingLun){
@@ -35,9 +34,19 @@ public class PingLunController {
         return save ? Result.ok().message("发表评论成功") : Result.fail().message("发表评论失败");
     }
 
-    @GetMapping("getPl/{tid}")
-    public Result getPl(@PathVariable Integer tid){
+
+    /**
+     * 获取文章下的评论列表
+     * @param tid 文章id
+     * @return result
+     */
+    @GetMapping("/getPL/{tid}")
+    public Result getPLList(@PathVariable Integer tid){
         List<PingLun> list = pingLunService.plList(tid);
+        if (list == null){
+            return Result.ok().message("暂时没有评论哦~");
+        }
         return Result.ok(list);
     }
+
 }

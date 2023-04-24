@@ -165,7 +165,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return i > 0;
     }
 
-
+    /**
+     * 根据用户id查询  用于展示用户数据
+     * @param uid 用户id
+     * @return result
+     */
+    @Override
+    public User getUserByUid(Integer uid) {
+        User userByUid = userMapper.getUserByUid(uid);
+        return userByUid;
+    }
 
 
 }

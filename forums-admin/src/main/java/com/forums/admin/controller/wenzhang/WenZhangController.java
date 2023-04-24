@@ -2,11 +2,16 @@ package com.forums.admin.controller.wenzhang;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.forums.admin.service.PingLunService;
 import com.forums.admin.service.UploadImageService;
+import com.forums.admin.service.UserService;
 import com.forums.admin.service.WenZhangService;
+import com.forums.model.pojo.PingLun;
+import com.forums.model.pojo.User;
 import com.forums.model.pojo.WenZhang;
 import com.forums.model.result.Result;
 import com.forums.model.result.WangEditorVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,8 +31,17 @@ public class WenZhangController {
     private WenZhangService wenZhangService;
     @Resource
     private UploadImageService uploadImageService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private PingLunService pingLunService;
 
 
+    /**
+     * 文章内上传图片接口
+     * @param file  图片
+     * @return result
+     */
     @PostMapping("/wzuploadImage")
     public WangEditorVO WzUploadImage(@RequestParam(value = "file",required = false) MultipartFile file){
 //        List<Map> list = new ArrayList<>();
@@ -82,5 +96,22 @@ public class WenZhangController {
         // 调用方法实现分页
         Page<WenZhang> wz = wenZhangService.page(page,queryWrapper);
         return Result.ok(wz);
+    }
+
+
+    @GetMapping("getWzByTid")
+    public Result getWzByTid(@Param("tid")Integer tid){
+        // 根据文章id查询文章
+        WenZhang byId = wenZhangService.getById(tid);
+        // 根据用户id查询文章作者信息
+        User userByUid = userService.getUserByUid(byId.getUid());
+        // 根据tid查询评论列表
+        List<PingLun> list = pingLunService.plList(tid);
+        // 拼接返回参数
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("wenzhang",byId);
+        map.put("user",userByUid);
+        map.put("pinglun",list);
+        return Result.ok(map);
     }
 }

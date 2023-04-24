@@ -6,6 +6,7 @@ import com.forums.admin.service.DianZanService;
 import com.forums.admin.service.UserService;
 import com.forums.admin.service.WenZhangService;
 import com.forums.model.pojo.DianZan;
+import com.forums.model.pojo.User;
 import com.forums.model.pojo.WenZhang;
 import com.forums.model.result.Result;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,6 +35,8 @@ public class UserShowController {
     private DianZanService dianZanService;
     @Resource
     private WenZhangService wenZhangService;
+    @Resource
+    private UserService userService;
 
     /**
      * 返回当前登录用户的点赞列表
@@ -50,6 +53,13 @@ public class UserShowController {
         return Result.ok(list);
     }
 
+    /**
+     * 个人中心查询自己发的文章
+     * @param current
+     * @param limit
+     * @param uid
+     * @return
+     */
     @GetMapping("findAllwzByUserId/{current}/{limit}/{uid}")
     public Result findAll(@PathVariable Integer current,
                           @PathVariable Integer limit,
@@ -60,5 +70,11 @@ public class UserShowController {
 //        List<WenZhang> list = wenZhangService.list(queryWrapper);
         Page<WenZhang> list = wenZhangService.page(page, queryWrapper);
         return Result.ok(list);
+    }
+
+    @GetMapping("getUserByUid/{uid}")
+    public Result getUserByUid(@PathVariable Integer uid){
+        User userByUid = userService.getUserByUid(uid);
+        return Result.ok(userByUid);
     }
 }

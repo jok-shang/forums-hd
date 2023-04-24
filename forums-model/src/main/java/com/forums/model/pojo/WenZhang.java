@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @auther 尚智江
@@ -49,4 +50,9 @@ public class WenZhang {
 
     @TableField("tshou")
     private Integer tShou;
+//
+//    @TableField(exist = false)
+//    private User user;
+//    @TableField(exist = false)
+//    private List<PingLun> pingLunList;
 }

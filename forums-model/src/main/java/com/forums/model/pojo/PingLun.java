@@ -18,6 +18,10 @@ import java.util.List;
 @TableName("pinglun")
 public class PingLun {
 
+    /*
+     * 二级评论
+     */
+
     @TableId(value = "pid", type = IdType.AUTO)
     private Integer pid;
 

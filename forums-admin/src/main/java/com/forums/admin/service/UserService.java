@@ -33,4 +33,7 @@ public interface UserService extends IService<User> {
     // 修改用户信息
     boolean updateUserById(User user);
 
+    // 根据用户id查询用户信息，用于展示
+    User getUserByUid(Integer uid);
+
 }
