@@ -37,6 +37,39 @@ public class WenZhangController {
 
 
     /**
+     * 获取所有文章列表 按时间排序 带分页
+     * @param current  当前页
+     * @param limit  每页显示条数
+     * @return result
+     */
+    @GetMapping("getAll/{current}/{limit}")
+    public Result getAll(@PathVariable Integer current,
+                         @PathVariable Integer limit){
+        Page<WenZhang> page = new Page<>(current,limit);
+        Page<WenZhang> all = wenZhangService.getAll(page);
+        return Result.ok(all);
+    }
+
+    /**
+     * 按文章分类查询（sid） 按时间排序  带分页
+     * @param current  当前页数
+     * @param limit  每页显示条数
+     * @param sid  分类的sid
+     * @return result
+     */
+    @GetMapping("getAllBySid/{current}/{limit}")
+    public Result getAllBySid(@PathVariable Integer current,
+                              @PathVariable Integer limit,
+                              @Param("sid") Integer sid){
+        Page<WenZhang> page = new Page<>(current,limit);
+        Page<WenZhang> allBySid = wenZhangService.getAllBySid(page,sid);
+        return Result.ok(allBySid);
+    }
+
+
+
+
+    /**
      * 文章内上传图片接口
      * @param file  图片
      * @return result

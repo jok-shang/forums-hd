@@ -52,6 +52,9 @@ public class WenZhang {
     private Integer tShou;
 
     @TableField(exist = false)
+    private Section section;
+
+    @TableField(exist = false)
     private boolean StartFlag;
 
 
