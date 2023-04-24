@@ -95,4 +95,11 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
         Page<DianZan> dianZans = dianZanMapper.selectDianZanList(page,uid);
         return dianZans;
     }
+
+    @Override
+    public boolean isToStart(Integer tid, Integer uid) {
+        Integer count = dianZanMapper.getCount(tid, uid);
+        System.out.println(count);
+        return count > 0;
+    }
 }

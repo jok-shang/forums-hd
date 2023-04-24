@@ -19,4 +19,7 @@ public interface DianZanService extends IService<DianZan> {
 
     // 用户查看自己点赞的列表
     Page<DianZan> selectDianZanList(Page<DianZan> page,Integer uid);
+
+    // 判断当前登录用户是否点赞
+    boolean isToStart(Integer tid,Integer uid);
 }

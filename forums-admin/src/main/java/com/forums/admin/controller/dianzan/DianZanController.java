@@ -22,6 +22,16 @@ public class DianZanController {
     @Resource
     private DianZanService dianZanService;
 
+    /**
+     * 用户点赞操作
+     * @param dianZan
+     * {
+     *     "tid": 1,   文章id
+     *     "uid": 18,  当前登录用户id
+     *     "count": 1   点赞+1 / 取消点赞-1
+     * }
+     * @return
+     */
     @PostMapping("/dianzan")
     public Result dianZan(@RequestBody DianZan dianZan){
         Integer a = dianZan.getCount();

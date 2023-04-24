@@ -17,4 +17,7 @@ import java.util.List;
 public interface DianZanMapper extends BaseMapper<DianZan> {
 
     Page<DianZan> selectDianZanList(@Param("page") Page<DianZan> page,@Param("uid") Integer uid);
+
+    // 统计用户是否点过赞
+    Integer getCount(Integer uid,Integer tid);
 }

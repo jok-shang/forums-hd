@@ -32,7 +32,7 @@ public class TestA {
     @Test
     public void  a(){
         int a = 1;
-        if (true && (a>0)){
+        if (a == 1){
             System.out.println("a");
         }
         if (true && (a<0)){

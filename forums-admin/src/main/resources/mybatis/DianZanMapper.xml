@@ -45,4 +45,8 @@
           AND wenzhang.uid=userinfo.uid
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM dianzan where uid = #{uid} and tid = #{tid}
+    </select>
+
 </mapper>

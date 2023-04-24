@@ -50,6 +50,10 @@ public class WenZhang {
 
     @TableField("tshou")
     private Integer tShou;
+
+    @TableField(exist = false)
+    private boolean StartFlag;
+
 //
 //    @TableField(exist = false)
 //    private User user;

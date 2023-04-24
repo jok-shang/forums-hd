@@ -2,10 +2,7 @@ package com.forums.admin.controller.wenzhang;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.forums.admin.service.PingLunService;
-import com.forums.admin.service.UploadImageService;
-import com.forums.admin.service.UserService;
-import com.forums.admin.service.WenZhangService;
+import com.forums.admin.service.*;
 import com.forums.model.pojo.PingLun;
 import com.forums.model.pojo.User;
 import com.forums.model.pojo.WenZhang;
@@ -35,6 +32,8 @@ public class WenZhangController {
     private UserService userService;
     @Resource
     private PingLunService pingLunService;
+    @Resource
+    private DianZanService dianZanService;
 
 
     /**
@@ -99,14 +98,24 @@ public class WenZhangController {
     }
 
 
+    /**
+     * 返回文章详情信息
+     * @param tid   文章id
+     * @param uid   当前登录用户id
+     * @return
+     */
     @GetMapping("getWzByTid")
-    public Result getWzByTid(@Param("tid")Integer tid){
+    public Result getWzByTid(@Param("tid")Integer tid ,@Param("uid") Integer uid){
         // 根据文章id查询文章
         WenZhang byId = wenZhangService.getById(tid);
+        // 判断当前用户是否点赞
+        boolean toStart = dianZanService.isToStart(uid, tid);
+        byId.setStartFlag(toStart);
         // 根据用户id查询文章作者信息
         User userByUid = userService.getUserByUid(byId.getUid());
         // 根据tid查询评论列表
         List<PingLun> list = pingLunService.plList(tid);
+
         // 拼接返回参数
         HashMap<String, Object> map = new HashMap<>();
         map.put("wenzhang",byId);
