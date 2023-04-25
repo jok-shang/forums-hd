@@ -1,5 +1,6 @@
 package com.forums.admin.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.forums.model.pojo.ShouCang;
 import org.springframework.stereotype.Service;
@@ -12,4 +13,7 @@ import org.springframework.stereotype.Service;
 public interface ShouCangService extends IService<ShouCang> {
     // 收藏操作
     boolean shoucang(ShouCang shouCang);
+
+    // 用户查看收藏列表
+    Page<ShouCang> selectShouCangList(Page<ShouCang> page,Integer uid);
 }

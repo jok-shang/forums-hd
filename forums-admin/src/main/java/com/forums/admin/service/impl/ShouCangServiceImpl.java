@@ -2,6 +2,7 @@ package com.forums.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.forums.admin.mapper.ShouCangMapper;
 import com.forums.admin.mapper.WenZhangMapper;
@@ -61,4 +62,12 @@ public class ShouCangServiceImpl extends ServiceImpl<ShouCangMapper, ShouCang> i
         }
         return false;
     }
+
+    // 返回用户收藏列表
+    @Override
+    public Page<ShouCang> selectShouCangList(Page<ShouCang> page, Integer uid) {
+        Page<ShouCang> shouCangPage = shouCangMapper.selectShouCangList(page,uid);
+        return shouCangPage;
+    }
+
 }

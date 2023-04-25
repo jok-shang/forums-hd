@@ -16,6 +16,7 @@ import java.util.List;
 @Mapper
 public interface DianZanMapper extends BaseMapper<DianZan> {
 
+    // 用户点赞列表返回
     Page<DianZan> selectDianZanList(@Param("page") Page<DianZan> page,@Param("uid") Integer uid);
 
     // 统计用户是否点过赞

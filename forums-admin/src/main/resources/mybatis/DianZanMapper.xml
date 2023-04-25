@@ -38,7 +38,8 @@
         </collection>
     </resultMap>
     <select id="selectDianZanList" resultMap="DianZanResult">
-        SELECT wenzhang.biaoti,wenzhang.neirong,userinfo.username,userinfo.headimage
+        SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.neirong,
+               userinfo.uid,userinfo.username,userinfo.headimage
         FROM wenzhang,userinfo
         WHERE wenzhang.tid in
               (SELECT tid from dianzan WHERE uid = #{uid})

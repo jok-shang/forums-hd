@@ -3,9 +3,11 @@ package com.forums.admin.controller.user;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.forums.admin.service.DianZanService;
+import com.forums.admin.service.ShouCangService;
 import com.forums.admin.service.UserService;
 import com.forums.admin.service.WenZhangService;
 import com.forums.model.pojo.DianZan;
+import com.forums.model.pojo.ShouCang;
 import com.forums.model.pojo.User;
 import com.forums.model.pojo.WenZhang;
 import com.forums.model.result.Result;
@@ -34,6 +36,8 @@ public class UserShowController {
     @Resource
     private DianZanService dianZanService;
     @Resource
+    private ShouCangService shouCangService;
+    @Resource
     private WenZhangService wenZhangService;
     @Resource
     private UserService userService;
@@ -53,6 +57,21 @@ public class UserShowController {
         return Result.ok(list);
     }
 
+    /**
+     * 返回当前用户的收藏列表
+     * @param current 当前页
+     * @param limit
+     * @param uid   当前登录用户id
+     * @return
+     */
+    @GetMapping("shoucangList/{current}/{limit}/{uid}")
+    public Result shouCangList(@PathVariable Integer current,
+                               @PathVariable Integer limit,
+                               @PathVariable Integer uid){
+        Page<ShouCang> page = new Page<>(current,limit);
+        Page<ShouCang> list = shouCangService.selectShouCangList(page, uid);
+        return Result.ok(list);
+    }
 
 
     /**
@@ -73,6 +92,8 @@ public class UserShowController {
         Page<WenZhang> list = wenZhangService.page(page, queryWrapper);
         return Result.ok(list);
     }
+
+
 
     @GetMapping("getUserByUid/{uid}")
     public Result getUserByUid(@PathVariable Integer uid){

@@ -1,8 +1,10 @@
 package com.forums.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.forums.model.pojo.ShouCang;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @auther 尚智江
@@ -10,4 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ShouCangMapper extends BaseMapper<ShouCang> {
+    // 用户收藏列表返回
+    Page<ShouCang> selectShouCangList(@Param("page") Page<ShouCang> page,@Param("uid") Integer uid);
 }
