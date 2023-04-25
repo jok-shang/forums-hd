@@ -32,6 +32,9 @@ public class WenZhang {
     @TableField("biaoti")
     private String biaoTi;
 
+    @TableField("jianjie")
+    private String jianjie;
+
     @TableField("neirong")
     private String neiRong;
 
@@ -53,6 +56,9 @@ public class WenZhang {
 
     @TableField(exist = false)
     private Section section;
+
+    @TableField(exist = false)
+    private User user;
 
     @TableField(exist = false)
     private boolean StartFlag;

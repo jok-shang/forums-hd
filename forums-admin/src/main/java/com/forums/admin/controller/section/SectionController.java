@@ -63,10 +63,10 @@ public class SectionController {
     public Result getSectionList(@PathVariable Integer sid){
         List<Section> sections = sectionService.selectSectionList(sid);
         // 判断sections集合的边界不为空再获取集合的大小！！！！ 不然报错索引异常
-        if (sections != null && sections.size() > 0) {
-            sections.get(0).setScount(sections.get(0).getWzList().size());
+//        if (sections != null && sections.size() > 0) {
+//            sections.get(0).setScount(sections.get(0).getWzList().size());
             return Result.ok(sections);
-        }
-        return Result.fail().message("没有找到文章呦~");
+//        }
+//        return Result.fail().message("没有找到文章呦~");
     }
 }

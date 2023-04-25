@@ -10,6 +10,7 @@
     <result property="uid"    column="uid"    />
     <result property="sid"    column="sid"    />
     <result property="biaoTi"    column="biaoti"    />
+        <result property="jianjie" column="jianjie" />
     <result property="neiRong"    column="neirong"    />
     <result property="createTime"    column="createtime"    />
     <result property="updateTime"    column="updatetime"    />
@@ -20,23 +21,38 @@
         <result property="sname"    column="sname"    />
         <result property="sjianjie"    column="sjianjie"    />
     </collection>
+        <collection property="user" ofType="com.forums.model.pojo.User">
+            <result property="uid"    column="uid"    />
+            <result property="username"    column="username"    />
+            <result property="headImage"    column="headimage"    />
+            <result property="motto" column="motto"  />
+            <result property="gender" column="gender" />
+        </collection>
     </resultMap>
 
     <select id="getAll" resultMap="WenZhangResult">
-        select wenzhang.*,section.sname
+        select wenzhang.*,section.sname,
+        userinfo.uid,userinfo.username,
+        userinfo.headimage,userinfo.gender,userinfo.motto
         from wenzhang
             LEFT JOIN section
                 on section.sid = wenzhang.sid
-        where isdelete = 0
+            LEFT JOIN userinfo
+                on userinfo.uid = wenzhang.uid
+        where wenzhang.isdelete = 0
         Order By createtime Desc
     </select>
 
     <select id="getAllBySid" resultMap="WenZhangResult">
-        select wenzhang.*,section.sname
+        select wenzhang.*,section.sname,
+               userinfo.uid,userinfo.username,
+               userinfo.headimage,userinfo.gender,userinfo.motto
         from wenzhang
             LEFT JOIN section
                 on section.sid = wenzhang.sid
-        where (isdelete = 0 AND wenzhang.sid = #{sid})
+            LEFT JOIN userinfo
+                on userinfo.uid = wenzhang.uid
+        where (wenzhang.isdelete = 0 AND wenzhang.sid = #{sid})
         Order By createtime Desc
     </select>
 

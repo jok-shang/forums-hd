@@ -23,7 +23,9 @@
     </resultMap>
 <!--查询分类文章列表-->
     <select id="selectSectionList" resultMap="SenctionResult">
-        SELECT * from section LEFT JOIN wenzhang on
+        SELECT section.sid,section.scount,section.sjianjie,section.sname,
+               wenzhang.tid, uid, biaoti, jianjie, neirong, createtime, updatetime, isdelete, tstart, tshou
+                   from section LEFT JOIN wenzhang on
             wenzhang.sid = section.sid
         WHERE wenzhang.sid = #{sid} AND wenzhang.isDelete = 0
     </select>

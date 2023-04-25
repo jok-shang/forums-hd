@@ -33,8 +33,9 @@ server:
   #参数过长
   max-http-header-size: 4048576
 
-#Mybatis配置
+#Mybatis配置扫描xml位置
 mybatis-plus:
   mapper-locations: classpath*:/mybatis/*.xml
+  #配置日志打印
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
