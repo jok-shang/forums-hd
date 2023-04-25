@@ -46,4 +46,8 @@
               (SELECT tid from shoucang WHERE uid = #{uid})
           AND wenzhang.uid=userinfo.uid
     </select>
+
+    <delete id="deleteShouCangWz" parameterType="java.lang.Integer">
+        DELETE FROM shoucang WHERE tid = #{tid}
+    </delete>
 </mapper>

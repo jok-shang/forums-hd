@@ -21,4 +21,7 @@ public interface DianZanMapper extends BaseMapper<DianZan> {
 
     // 统计用户是否点过赞
     Integer getCount(Integer uid,Integer tid);
+
+    // 发表文章的用户删除自己文章移除所有点赞过的列表
+    Integer deleteDianZanWz(Integer tid);
 }

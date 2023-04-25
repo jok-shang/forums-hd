@@ -19,4 +19,7 @@ public interface WenZhangMapper extends BaseMapper<WenZhang> {
 
     // 根据sid分类查询文章按时间排序
     Page<WenZhang> getAllBySid(@Param("page") Page<WenZhang> page,@Param("sid") Integer sid);
+
+    // 用户删除自己发表的文章
+    Integer deleteWz(Integer tid);
 }

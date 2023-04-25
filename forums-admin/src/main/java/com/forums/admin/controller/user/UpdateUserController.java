@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.forums.admin.service.UploadImageService;
 import com.forums.admin.service.UserService;
+import com.forums.admin.service.WenZhangService;
 import com.forums.admin.util.MD5Utils;
 import com.forums.model.pojo.User;
 import com.forums.model.result.Result;
@@ -30,6 +31,8 @@ public class UpdateUserController {
     private RedisTemplate redisTemplate;
     @Resource
     private UploadImageService uploadImageService;
+    @Resource
+    private WenZhangService wenZhangService;
 
     /**
      * 修改密码1  向用户的邮箱发送验证码
@@ -128,5 +131,17 @@ public class UpdateUserController {
             }
         }
         return Result.fail().message("头像修改失败");
+    }
+
+
+    /**
+     * 文章作者删除文章，删除点赞表和收藏表
+     * @param tid
+     * @return
+     */
+    @PostMapping("delete/{tid}")
+    public Result deleteWz(@PathVariable Integer tid){
+        boolean b = wenZhangService.deleteWz(tid);
+        return b ? Result.ok().message("删除文章成功!") : Result.fail().message("删除文章异常");
     }
 }

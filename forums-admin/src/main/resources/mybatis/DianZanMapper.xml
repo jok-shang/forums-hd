@@ -50,4 +50,8 @@
         SELECT COUNT(*) FROM dianzan where uid = #{uid} and tid = #{tid}
     </select>
 
+    <delete id="deleteDianZanWz" parameterType="java.lang.Integer">
+        DELETE FROM dianzan WHERE tid = #{tid}
+    </delete>
+
 </mapper>

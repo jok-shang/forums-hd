@@ -18,4 +18,6 @@ public interface WenZhangService extends IService<WenZhang> {
 
     // 根据sid分类查询文章按时间排序
     Page<WenZhang> getAllBySid(Page<WenZhang> page,Integer sid);
+
+    boolean deleteWz(Integer tid);
 }
