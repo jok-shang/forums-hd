@@ -34,6 +34,8 @@ public class WenZhangController {
     private PingLunService pingLunService;
     @Resource
     private DianZanService dianZanService;
+    @Resource
+    private ShouCangService shouCangService;
 
 
     /**
@@ -145,7 +147,10 @@ public class WenZhangController {
         WenZhang byId = wenZhangService.getById(tid);
         // 判断当前用户是否点赞
         boolean toStart = dianZanService.isToStart(uid, tid);
+        // 判断当前用户是否收藏
+        boolean toShou = shouCangService.isToShou(uid,tid);
         byId.setStartFlag(toStart);
+        byId.setShouFlag(toShou);
         // 根据用户id查询文章作者信息
         User userByUid = userService.getUserByUid(byId.getUid());
         // 根据tid查询评论列表

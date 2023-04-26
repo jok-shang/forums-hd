@@ -70,4 +70,15 @@ public class ShouCangServiceImpl extends ServiceImpl<ShouCangMapper, ShouCang> i
         return shouCangPage;
     }
 
+    /*
+    返回true说明用户已经点赞过
+    false说明用户未点过或者已经取消点赞
+     */
+    @Override
+    public boolean isToShou(Integer tid, Integer uid) {
+        Integer count = shouCangMapper.getCountS(tid, uid);
+        System.out.println(count);
+        return count > 0;
+    }
+
 }

@@ -17,4 +17,7 @@ public interface ShouCangMapper extends BaseMapper<ShouCang> {
 
     // 删除收藏列表关于此篇文章的记录
     Integer deleteShouCangWz(Integer tid);
+
+    // 统计用户是否点过赞
+    Integer getCountS(Integer uid,Integer tid);
 }

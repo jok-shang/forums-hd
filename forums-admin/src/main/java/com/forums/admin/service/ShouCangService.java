@@ -16,4 +16,7 @@ public interface ShouCangService extends IService<ShouCang> {
 
     // 用户查看收藏列表
     Page<ShouCang> selectShouCangList(Page<ShouCang> page,Integer uid);
+
+    // 判断当前登录用户是否点赞
+    boolean isToShou(Integer tid,Integer uid);
 }

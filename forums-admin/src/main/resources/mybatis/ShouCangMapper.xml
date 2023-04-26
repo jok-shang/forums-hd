@@ -50,4 +50,8 @@
     <delete id="deleteShouCangWz" parameterType="java.lang.Integer">
         DELETE FROM shoucang WHERE tid = #{tid}
     </delete>
+
+    <select id="getCountS" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM shoucang where uid = #{uid} and tid = #{tid}
+    </select>
 </mapper>

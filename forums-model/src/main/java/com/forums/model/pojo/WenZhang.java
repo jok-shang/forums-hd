@@ -63,6 +63,9 @@ public class WenZhang {
     @TableField(exist = false)
     private boolean StartFlag;
 
+    @TableField(exist = false)
+    private boolean ShouFlag;
+
 
 //
 //    @TableField(exist = false)
