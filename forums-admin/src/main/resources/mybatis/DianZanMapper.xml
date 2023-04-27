@@ -15,6 +15,7 @@
         <result property="sid"    column="sid"    />
         <result property="biaoTi"    column="biaoti"    />
         <result property="neiRong"    column="neirong"    />
+        <result property="jianjie" column="jianjie"/>
         <result property="createTime"    column="createtime"    />
         <result property="updateTime"    column="updatetime"    />
         <result property="tShou"    column="tstart"    />
@@ -38,12 +39,13 @@
         </collection>
     </resultMap>
     <select id="selectDianZanList" resultMap="DianZanResult">
-        SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.neirong,
-               userinfo.uid,userinfo.username,userinfo.headimage
-        FROM wenzhang,userinfo
+        SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.jianjie,wenzhang.neirong,
+               userinfo.uid,userinfo.username,userinfo.headimage,dianzan.create_time
+        FROM wenzhang,userinfo,dianzan
         WHERE wenzhang.tid in
               (SELECT tid from dianzan WHERE uid = #{uid})
           AND wenzhang.uid=userinfo.uid
+        group by wenzhang.tid
     </select>
 
     <select id="getCount" resultType="java.lang.Integer">

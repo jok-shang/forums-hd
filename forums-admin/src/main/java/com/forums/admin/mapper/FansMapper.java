@@ -14,4 +14,7 @@ import org.apache.ibatis.annotations.Param;
 public interface FansMapper extends BaseMapper<Fans> {
     // 粉丝列表
     Page<Fans> fansList(@Param("page")Page<Fans> page,@Param("userId") Integer userId);
+
+    // 统计粉丝数
+    Integer fansCount(Integer userId);
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -99,5 +100,16 @@ public class UserShowController {
     public Result getUserByUid(@PathVariable Integer uid){
         User userByUid = userService.getUserByUid(uid);
         return Result.ok(userByUid);
+    }
+
+    /**
+     * 返回用户关注数量，粉丝数量，文章获赞总数 统计数量
+     * @param userId
+     * @return
+     */
+    @GetMapping("getUserCount/{userId}")
+    public Result getUserCount(@PathVariable Integer userId){
+        HashMap<String, Integer> userCount = wenZhangService.getUserCount(userId);
+        return Result.ok(userCount);
     }
 }

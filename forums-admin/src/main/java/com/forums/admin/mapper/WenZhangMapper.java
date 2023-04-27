@@ -22,4 +22,7 @@ public interface WenZhangMapper extends BaseMapper<WenZhang> {
 
     // 用户删除自己发表的文章
     Integer deleteWz(Integer tid);
+
+    // 统计用户文章获赞总数
+    Integer userStartNum(Integer userId);
 }

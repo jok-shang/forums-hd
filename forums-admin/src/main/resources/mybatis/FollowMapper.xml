@@ -34,4 +34,9 @@
         where uid in
               (SELECT followed_user from follow where user_id = #{userId} )
     </select>
+
+<!--    统计关注数-->
+    <select id="followCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) from follow WHERE follow.user_id = #{userId}
+    </select>
 </mapper>

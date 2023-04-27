@@ -22,5 +22,4 @@
     <select id="getUserByUid" resultType="com.forums.model.pojo.User">
         select uid, username, email, creattime, headimage, age, gender, hobby, job, motto from userinfo where uid = #{uid}
     </select>
-
 </mapper>

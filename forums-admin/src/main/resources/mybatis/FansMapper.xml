@@ -32,4 +32,9 @@
         where uid in
               (SELECT follower_id from fans where user_id = #{userId} )
     </select>
+
+<!--    统计用户粉丝数-->
+    <select id="fansCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) from fans WHERE fans.user_id = #{userId}
+    </select>
 </mapper>

@@ -60,4 +60,9 @@
         DELETE FROM wenzhang WHERE tid = #{tid}
     </delete>
 
+    <!--    统计文章获赞数-->
+    <select id="userStartNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT sum(wenzhang.tstart) from wenzhang where wenzhang.uid = #{userId}
+    </select>
+
 </mapper>

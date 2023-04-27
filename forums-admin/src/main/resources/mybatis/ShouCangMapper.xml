@@ -14,6 +14,7 @@
             <result property="uid"    column="uid"    />
             <result property="sid"    column="sid"    />
             <result property="biaoTi"    column="biaoti"    />
+            <result property="jianjie" column="jianjie"/>
             <result property="neiRong"    column="neirong"    />
             <result property="createTime"    column="createtime"    />
             <result property="updateTime"    column="updatetime"    />
@@ -39,12 +40,13 @@
     </resultMap>
 
     <select id="selectShouCangList" resultMap="ShouCangResult">
-        SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.neirong,
-               userinfo.uid,userinfo.username,userinfo.headimage
-        FROM wenzhang,userinfo
+        SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.jianjie,wenzhang.neirong,
+               userinfo.uid,userinfo.username,userinfo.headimage,shoucang.create_time
+        FROM wenzhang,userinfo,shoucang
         WHERE wenzhang.tid in
               (SELECT tid from shoucang WHERE uid = #{uid})
           AND wenzhang.uid=userinfo.uid
+            group by wenzhang.tid
     </select>
 
     <delete id="deleteShouCangWz" parameterType="java.lang.Integer">

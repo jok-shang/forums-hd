@@ -16,4 +16,7 @@ import java.util.List;
 public interface FollowMapper extends BaseMapper<Follow> {
 
     Page<Follow> followList(@Param("page")Page<Follow> page,@Param("userId")Integer userId);
+
+    // 统计用户关注数
+    Integer followCount(Integer userId);
 }
