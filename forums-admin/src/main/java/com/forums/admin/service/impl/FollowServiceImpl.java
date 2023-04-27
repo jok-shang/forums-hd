@@ -1,5 +1,6 @@
 package com.forums.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.forums.admin.mapper.FansMapper;
@@ -47,5 +48,14 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
     public Page<Follow> followList(Page<Follow> page, Integer userId) {
         Page<Follow> allUserList = followMapper.followList(page,userId);
         return allUserList;
+    }
+
+    @Override
+    public boolean pdFollowFlog(Integer userId, Integer followId) {
+        QueryWrapper<Follow> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        queryWrapper.eq("followed_user",followId);
+        Integer integer = followMapper.selectCount(queryWrapper);
+        return integer > 0;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.data.redis.connection.ReactiveSubscription;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -79,6 +80,15 @@ public class FollowAndFansController {
         if (fansPage.getRecords().size() != 0){
             return Result.ok(fansPage);
         }return Result.fail().message("您还没有粉丝哦~");
+    }
+
+    @GetMapping("pdFollow/{userId}/{followId}")
+    public Result pdFollow(@PathVariable Integer userId,
+                           @PathVariable Integer followId){
+        HashMap<String, Boolean> map = new HashMap<>();
+        boolean b = followService.pdFollowFlog(userId, followId);
+        map.put("followFlag",b);
+        return Result.ok(map);
     }
 
 }

@@ -18,4 +18,7 @@ public interface FollowService extends IService<Follow> {
 
     // 关注列表
     Page<Follow> followList(Page<Follow> page,Integer userId);
+
+    // 判断是否关注
+    boolean pdFollowFlog(Integer userId,Integer followId);
 }

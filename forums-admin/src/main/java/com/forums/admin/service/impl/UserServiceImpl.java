@@ -140,7 +140,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean updatePassword(User user) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("email",user.getEmail()).eq("username",user.getUsername());
+        queryWrapper.eq("email",user.getEmail());
         User one = userMapper.selectOne(queryWrapper);
         System.out.println("查询出来的用户信息"+user);
         if (one != null){
@@ -149,7 +149,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             String newPassword = md5Util.getMD5Password(user.getPassword(), salt);
             UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
             updateWrapper
-                    .eq("username",user.getUsername());
+                    .eq("email",user.getEmail());
             updateWrapper.set("salt",salt);
             updateWrapper.set("password",newPassword);
             int update = baseMapper.update(user,updateWrapper);

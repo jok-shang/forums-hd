@@ -49,6 +49,7 @@ public class EmailUtils {
         // 得到邮差对象
         Transport transport = session.getTransport();
         // 连接自己的邮箱账户
+//        hkohxtgwbwsxdeea   hbrkehxypoccdghe
         transport.connect("2859308825@qq.com", "hkohxtgwbwsxdeea");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码,输入自己的即可
         // 发送邮件
         transport.sendMessage(message, message.getAllRecipients());
