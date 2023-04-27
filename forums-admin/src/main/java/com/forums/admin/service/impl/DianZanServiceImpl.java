@@ -7,10 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.forums.admin.mapper.DianZanMapper;
 import com.forums.admin.mapper.WenZhangMapper;
 import com.forums.admin.service.DianZanService;
-import com.forums.admin.service.WenZhangService;
 import com.forums.model.pojo.DianZan;
 import com.forums.model.pojo.WenZhang;
-import com.forums.model.vo.DianZanVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

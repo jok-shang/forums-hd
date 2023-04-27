@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forums.admin.mapper.FollowMapper">
+
+    <resultMap type="com.forums.model.pojo.Follow" id="FollowResult">
+        <id property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="folleredUser"    column="followed_user"    />
+        <result property="status" column="status"  />
+        <collection property="userList" ofType="com.forums.model.pojo.User">
+            <id property="uid"    column="uid"    />
+            <result property="username"    column="username"    />
+            <result property="password"    column="password"    />
+            <result property="password"    column="password"    />
+            <result property="email"    column="email"    />
+            <result property="createTime"    column="createtime"    />
+            <result property="headImage"    column="headimage"    />
+            <result property="isDelete"    column="isdelete"    />
+            <result property="salt"    column="salt"    />
+            <result property="age"    column="age"    />
+            <result property="gender"    column="gender"    />
+            <result property="hobby"    column="hobby"    />
+            <result property="job"    column="job"    />
+            <result property="motto"    column="motto"    />
+        </collection>
+    </resultMap>
+
+
+    <select id="followList" parameterType="java.lang.Integer" resultMap="FollowResult">
+        SELECT uid, username, email, headimage, age, gender, hobby, job, motto
+        from userinfo
+        where uid in
+              (SELECT followed_user from follow where user_id = #{userId} )
+    </select>
+</mapper>
