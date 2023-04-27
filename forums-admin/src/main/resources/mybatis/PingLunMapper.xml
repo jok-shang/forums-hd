@@ -27,7 +27,7 @@
                userinfo.uid,userinfo.headimage,userinfo.username
                    from pinglun LEFT JOIN userinfo on
             pinglun.uid = userinfo.uid
-        WHERE pinglun.tid = 1
+        WHERE pinglun.tid = #{tid}
     </select>
 
 </mapper>
