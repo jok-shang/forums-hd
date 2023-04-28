@@ -29,4 +29,10 @@ public class PingLunServiceImpl extends ServiceImpl<PingLunMapper, PingLun> impl
     public List<PingLun> plList(Integer tid) {
         return pingLunMapper.selectPL(tid);
     }
+
+    @Override
+    public boolean deletePL(Integer pid) {
+        Integer b = pingLunMapper.deletePL(pid);
+        return b > 0;
+    }
 }

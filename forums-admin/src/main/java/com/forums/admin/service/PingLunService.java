@@ -15,4 +15,6 @@ import java.util.List;
 public interface PingLunService extends IService<PingLun> {
 
     List<PingLun> plList(Integer tid);
+
+    boolean deletePL(Integer pid);
 }

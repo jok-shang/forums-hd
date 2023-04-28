@@ -30,4 +30,8 @@
         WHERE pinglun.tid = #{tid}
     </select>
 
+    <delete id="deletePL" parameterType="java.lang.Integer">
+        delete from pinglun where pid = #{pid}
+    </delete>
+
 </mapper>

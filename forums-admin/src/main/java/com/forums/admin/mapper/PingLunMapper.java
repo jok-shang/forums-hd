@@ -14,4 +14,7 @@ import java.util.List;
 public interface PingLunMapper extends BaseMapper<PingLun> {
 
      List<PingLun> selectPL(Integer tid);
+
+     // 取消评论
+     Integer deletePL(Integer pid);
 }
