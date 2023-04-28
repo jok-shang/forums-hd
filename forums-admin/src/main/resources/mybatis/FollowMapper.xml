@@ -39,4 +39,8 @@
     <select id="followCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT COUNT(*) from follow WHERE follow.user_id = #{userId}
     </select>
+
+    <delete id="cancelFollow" parameterType="java.lang.Integer" >
+        delete from follow where user_id = #{userId} And followed_User = #{followedId}
+    </delete>
 </mapper>

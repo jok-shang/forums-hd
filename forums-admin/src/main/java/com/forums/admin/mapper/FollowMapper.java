@@ -19,4 +19,7 @@ public interface FollowMapper extends BaseMapper<Follow> {
 
     // 统计用户关注数
     Integer followCount(Integer userId);
+
+    // 取消关注
+    Integer cancelFollow(Integer userId,Integer followedId);
 }

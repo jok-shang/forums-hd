@@ -13,4 +13,6 @@ import org.springframework.stereotype.Service;
 public interface FansService extends IService<Fans> {
 
     Page<Fans> fansList(Page<Fans> page,Integer userId);
+
+    boolean cancelFans(Integer userId,Integer followedId);
 }

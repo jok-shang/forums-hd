@@ -17,4 +17,7 @@ public interface FansMapper extends BaseMapper<Fans> {
 
     // 统计粉丝数
     Integer fansCount(Integer userId);
+
+    // 取消关注操作取消粉丝
+    Integer cancelFans(Integer userId,Integer followedId);
 }

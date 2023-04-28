@@ -37,4 +37,9 @@
     <select id="fansCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT COUNT(*) from fans WHERE fans.user_id = #{userId}
     </select>
+
+<!--    取消关注-->
+    <delete id="cancelFans" parameterType="java.lang.Integer">
+        delete from fans where user_id = #{followedId} and follower_id = #{userId}
+    </delete>
 </mapper>

@@ -21,4 +21,6 @@ public interface FollowService extends IService<Follow> {
 
     // 判断是否关注
     boolean pdFollowFlog(Integer userId,Integer followId);
+
+    boolean cancelFollow(Integer userId,Integer followedId);
 }

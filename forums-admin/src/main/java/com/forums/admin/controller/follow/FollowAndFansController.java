@@ -82,6 +82,12 @@ public class FollowAndFansController {
         }return Result.fail().message("您还没有粉丝哦~");
     }
 
+    /**
+     * 判断用户是关注
+     * @param userId
+     * @param followId
+     * @return
+     */
     @GetMapping("pdFollow/{userId}/{followId}")
     public Result pdFollow(@PathVariable Integer userId,
                            @PathVariable Integer followId){
@@ -89,6 +95,24 @@ public class FollowAndFansController {
         boolean b = followService.pdFollowFlog(userId, followId);
         map.put("followFlag",b);
         return Result.ok(map);
+    }
+
+
+    /**
+     * 取消关注操作
+     * @param userId  当前登录用户id
+     * @param followedId  取消关注用户id
+     * @return
+     */
+    @PostMapping("cancel/{userId}/{followedId}")
+    public Result cancelFollow(@PathVariable Integer userId,
+                              @PathVariable Integer followedId){
+        boolean a = followService.cancelFollow(userId, followedId);
+        boolean b = fansService.cancelFans(userId,followedId);
+        if (a){
+            return Result.ok().message("取消关注成功");
+        }
+        return Result.fail().message("取消关注异常");
     }
 
 }

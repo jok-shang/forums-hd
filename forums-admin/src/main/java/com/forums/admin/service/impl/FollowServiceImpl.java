@@ -58,4 +58,10 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
         Integer integer = followMapper.selectCount(queryWrapper);
         return integer > 0;
     }
+
+    @Override
+    public boolean cancelFollow(Integer userId, Integer followedId) {
+        Integer integer = followMapper.cancelFollow(userId, followedId);
+        return integer > 0;
+    }
 }
