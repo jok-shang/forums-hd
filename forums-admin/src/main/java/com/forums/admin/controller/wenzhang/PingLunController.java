@@ -49,6 +49,11 @@ public class PingLunController {
         return Result.ok(list);
     }
 
+    /**
+     * 根据评论 pid 删除评论
+     * @param pid  评论id
+     * @return
+     */
     @PostMapping("deletePl/{pid}")
     public Result deletePL(@PathVariable Integer pid){
         boolean b = pingLunService.deletePL(pid);
