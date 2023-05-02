@@ -19,6 +19,7 @@ public class User {
 
     /** 用户id */
     @TableId(value = "uid",type = IdType.AUTO)
+//    @TableId("uid")
     private Integer uid;
 
     /** 用户名 */
