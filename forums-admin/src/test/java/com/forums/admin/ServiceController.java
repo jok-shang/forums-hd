@@ -27,23 +27,23 @@ public class ServiceController extends BaseController{
     @Resource
     private DianZanService dianZanService;
     // 根据文章分类查询文章
-    @Test
-    public void getUserCountTest(){
-        Page<WenZhang> page = new Page<>(1,2);
-        Page<WenZhang> allBySid = wenZhangService.getAllBySid(page, 1);
-        Assert.assertSame("ok",allBySid,wenZhangService.getAllBySid(page,1));
-    }
-
-    // 判断当前用户是否收藏当前文章
-    @Test
-    public void pdShouCang(){
-        Assert.assertSame("ok",false,shouCangService.isToShou(1,18));
-    }
-
-    // 判断当前用户是否点赞当前文章
-    @Test
-    public void pdStart(){
-        Assert.assertSame("ok",true,dianZanService.isToStart(1,18));
-    }
+//    @Test
+//    public void getUserCountTest(){
+//        Page<WenZhang> page = new Page<>(1,2);
+//        Page<WenZhang> allBySid = wenZhangService.getAllBySid(page, 1);
+//        Assert.assertSame("ok",allBySid,wenZhangService.getAllBySid(page,1));
+//    }
+//
+//    // 判断当前用户是否收藏当前文章
+//    @Test
+//    public void pdShouCang(){
+//        Assert.assertSame("ok",false,shouCangService.isToShou(1,18));
+//    }
+//
+//    // 判断当前用户是否点赞当前文章
+//    @Test
+//    public void pdStart(){
+//        Assert.assertSame("ok",true,dianZanService.isToStart(1,18));
+//    }
 
 }

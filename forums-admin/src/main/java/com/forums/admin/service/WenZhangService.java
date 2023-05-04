@@ -24,5 +24,5 @@ public interface WenZhangService extends IService<WenZhang> {
     boolean deleteWz(Integer tid);
 
     // 统计用户关注数，粉丝数，获赞总数
-    HashMap<String, Integer> getUserCount(Integer userId);
+    HashMap<String, Integer> getUserCount(String userId);
 }

@@ -47,7 +47,7 @@ public class SectionController {
             QueryWrapper<WenZhang> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("sid",list1.get(i));
             int count = wenZhangService.count(queryWrapper);
-            System.out.println(count+"=======******");
+//            System.out.println(count+"=======******");
             updateWrapper.set("scount",count);
             sectionService.update(updateWrapper);
         }

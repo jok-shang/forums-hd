@@ -17,7 +17,7 @@
     <result property="tShou"    column="tstart"    />
     <result property="tStart"    column="tshou"    />
     <collection property="section" ofType="com.forums.model.pojo.Section">
-        <id property="sid"    column="uid"    />
+        <id property="sid"    column="sid"    />
         <result property="sname"    column="sname"    />
         <result property="sjianjie"    column="sjianjie"    />
     </collection>
@@ -43,7 +43,7 @@
         Order By createtime Desc
     </select>
 
-    <select id="getAllBySid" resultMap="WenZhangResult">
+    <select id="getAllBySid" resultMap="WenZhangResult" parameterType="java.lang.Integer">
         select wenzhang.*,section.sname,
                userinfo.uid,userinfo.username,
                userinfo.headimage,userinfo.gender,userinfo.motto
@@ -61,7 +61,7 @@
     </delete>
 
     <!--    统计文章获赞数-->
-    <select id="userStartNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    <select id="userStartNum" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT sum(wenzhang.tstart) from wenzhang where wenzhang.uid = #{userId}
     </select>
 

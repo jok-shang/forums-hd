@@ -51,7 +51,7 @@ public class UserShowController {
     @GetMapping("dianZanList/{current}/{limit}/{uid}")
     public Result dianZanList(@PathVariable Integer current,
                               @PathVariable Integer limit,
-                              @PathVariable Integer uid){
+                              @PathVariable String uid){
         Page<DianZan> page = new Page<>(current,limit);
         Page<DianZan> list = dianZanService.selectDianZanList(page,uid);
 
@@ -68,7 +68,7 @@ public class UserShowController {
     @GetMapping("shoucangList/{current}/{limit}/{uid}")
     public Result shouCangList(@PathVariable Integer current,
                                @PathVariable Integer limit,
-                               @PathVariable Integer uid){
+                               @PathVariable String uid){
         Page<ShouCang> page = new Page<>(current,limit);
         Page<ShouCang> list = shouCangService.selectShouCangList(page, uid);
         return Result.ok(list);
@@ -85,7 +85,7 @@ public class UserShowController {
     @GetMapping("findAllwzByUserId/{current}/{limit}/{uid}")
     public Result findAll(@PathVariable Integer current,
                           @PathVariable Integer limit,
-                          @PathVariable Integer uid){
+                          @PathVariable String uid){
         Page<WenZhang> page = new Page<>(current,limit);
         QueryWrapper<WenZhang> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",uid);
@@ -97,7 +97,7 @@ public class UserShowController {
 
 
     @GetMapping("getUserByUid/{uid}")
-    public Result getUserByUid(@PathVariable Integer uid){
+    public Result getUserByUid(@PathVariable String uid){
         User userByUid = userService.getUserByUid(uid);
         return Result.ok(userByUid);
     }
@@ -108,7 +108,7 @@ public class UserShowController {
      * @return
      */
     @GetMapping("getUserCount/{userId}")
-    public Result getUserCount(@PathVariable Integer userId){
+    public Result getUserCount(@PathVariable String userId){
         HashMap<String, Integer> userCount = wenZhangService.getUserCount(userId);
         return Result.ok(userCount);
     }

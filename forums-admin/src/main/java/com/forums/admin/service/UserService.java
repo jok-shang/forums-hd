@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService extends IService<User> {
-    User selectUsername(Integer uid);
+    User selectUsername(Long uid);
 
     // 随机生成六位随机数字
     String getRandomCount();
@@ -34,6 +34,6 @@ public interface UserService extends IService<User> {
     boolean updateUserById(User user);
 
     // 根据用户id查询用户信息，用于展示
-    User getUserByUid(Integer uid);
+    User getUserByUid(String uid);
 
 }

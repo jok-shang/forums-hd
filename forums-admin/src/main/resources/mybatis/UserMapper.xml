@@ -15,11 +15,11 @@
     </resultMap>
 
     <!--  查询用户名是否存在  -->
-        <select id="selectUsername" resultType="com.forums.model.pojo.User" parameterType="java.lang.Integer">
+        <select id="selectUsername" resultType="com.forums.model.pojo.User" parameterType="java.lang.String">
             select * from userinfo where uid = #{uid}
         </select>
 
-    <select id="getUserByUid" resultType="com.forums.model.pojo.User">
+    <select id="getUserByUid" resultType="com.forums.model.pojo.User" parameterType="java.lang.String">
         select uid, username, email, creattime, headimage, age, gender, hobby, job, motto from userinfo where uid = #{uid}
     </select>
 </mapper>

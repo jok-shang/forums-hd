@@ -1,10 +1,12 @@
 package com.forums.model.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +26,7 @@ public class WenZhang {
     private Integer tid;
 
     @TableField("uid")
-    private Integer uid;
+    private String uid;
 
     @TableField("sid")
     private Integer sid;
@@ -39,9 +41,13 @@ public class WenZhang {
     private String neiRong;
 
     @TableField(value = "createtime", fill = FieldFill.INSERT)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     @TableField(value = "updatetime", fill = FieldFill.UPDATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date updateTime;
 
     @TableLogic(value = "0", delval = "1")

@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private RedisTemplate redisTemplate;
 
     @Override
-    public User selectUsername(Integer uid) {
+    public User selectUsername(Long uid) {
         return userMapper.selectUsername(uid);
     }
 
@@ -64,8 +64,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //TODO 向用户邮箱发送验证码
         EmailUtils emailUtils = new EmailUtils();
         try {
-            emailUtils.toEmail(user.getEmail(), "欢迎" + user.getUsername() +
-                    "注册学习论坛平台", "您的注册验证码为:   " + randomCount);
+            emailUtils.toEmail(user.getEmail(), "欢迎'" + user.getUsername() +
+                    "'注册Index Forum平台", "您的注册验证码为:   " + randomCount);
         } catch (MessagingException e) {
             return false;
         }
@@ -93,6 +93,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setSalt(salt);
         user.setHeadImage("http://image.szj.icu/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220607211837.jpg");
         user.setIsDelete(0);
+        user.setGender(0);
         user.setCreateTime(new Date());
         int insert = userMapper.insert(user);
         return insert > 0;
@@ -122,7 +123,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //TODO 向用户邮箱发送验证码
         EmailUtils emailUtils = new EmailUtils();
         try {
-            emailUtils.toEmail(email, "修改学习论坛平台密码" ,"您本次修改账号密码的验证码为 : "+ randomCount);
+            emailUtils.toEmail(email, "修改Index Forum平台密码" ,"您本次修改账号密码的验证码为 : "+ randomCount);
         } catch (MessagingException e) {
             return false;
         }
@@ -171,7 +172,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return result
      */
     @Override
-    public User getUserByUid(Integer uid) {
+    public User getUserByUid(String uid) {
         User userByUid = userMapper.getUserByUid(uid);
         return userByUid;
     }

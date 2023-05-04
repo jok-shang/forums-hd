@@ -13,7 +13,7 @@ import java.util.Date;
 public class DianZanVO {
     private Integer did;
     private Integer tid;
-    private Integer uid;
+    private String uid;
     private Date createTime;
     // 用于判断是第一次还是第二次
     private Integer count;

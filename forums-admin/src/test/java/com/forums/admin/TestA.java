@@ -6,10 +6,12 @@ import com.forums.admin.mapper.DianZanMapper;
 import com.forums.admin.mapper.PingLunMapper;
 import com.forums.admin.service.PingLunService;
 import com.forums.model.pojo.DianZan;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,24 +30,23 @@ public class TestA {
 
 
 
-
-    @Test
-    public void  a(){
-        int a = 1;
-        if (a == 1){
-            System.out.println("a");
-        }
-        if (true && (a<0)){
-            System.out.println("b");
-        }
-    }
-
-    @Test
-    public void b(){
-        Page<DianZan> page = new Page<>(1,2);
-        Page<DianZan> dianZanPage = dianZanMapper.selectDianZanList(page, 18);
-        System.out.println(dianZanPage);
-    }
+//    @Test
+//    public void  a(){
+//        int a = 1;
+//        if (a == 1){
+//            System.out.println("a");
+//        }
+//        if (true && (a<0)){
+//            System.out.println("b");
+//        }
+//    }
+//
+//    @Test
+//    public void b(){
+//        Page<DianZan> page = new Page<>(1,2);
+//        Page<DianZan> dianZanPage = dianZanMapper.selectDianZanList(page, 18);
+//        System.out.println(dianZanPage);
+//    }
 
 
 

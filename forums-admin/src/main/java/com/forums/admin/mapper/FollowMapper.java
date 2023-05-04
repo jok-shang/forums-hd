@@ -15,11 +15,11 @@ import java.util.List;
 @Mapper
 public interface FollowMapper extends BaseMapper<Follow> {
 
-    Page<Follow> followList(@Param("page")Page<Follow> page,@Param("userId")Integer userId);
+    Page<Follow> followList(@Param("page")Page<Follow> page,@Param("userId")String userId);
 
     // 统计用户关注数
-    Integer followCount(Integer userId);
+    Integer followCount(String userId);
 
     // 取消关注
-    Integer cancelFollow(Integer userId,Integer followedId);
+    Integer cancelFollow(String userId,String followedId);
 }

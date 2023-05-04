@@ -39,7 +39,7 @@
         </collection>
     </resultMap>
 
-    <select id="selectShouCangList" resultMap="ShouCangResult">
+    <select id="selectShouCangList" resultMap="ShouCangResult" parameterType="java.lang.String">
         SELECT wenzhang.tid,wenzhang.biaoti,wenzhang.jianjie,wenzhang.neirong,
                userinfo.uid,userinfo.username,userinfo.headimage,shoucang.create_time
         FROM wenzhang,userinfo,shoucang

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FansService extends IService<Fans> {
 
-    Page<Fans> fansList(Page<Fans> page,Integer userId);
+    Page<Fans> fansList(Page<Fans> page,String userId);
 
-    boolean cancelFans(Integer userId,Integer followedId);
+    boolean cancelFans(String userId,String followedId);
 }

@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-    User selectUsername(Integer uid);
+    User selectUsername(Long uid);
 
     // 根据用户id查询信息用于展示
-    User getUserByUid(Integer uid);
+    User getUserByUid(String uid);
 }

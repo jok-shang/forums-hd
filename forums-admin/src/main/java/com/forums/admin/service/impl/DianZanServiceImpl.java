@@ -89,7 +89,7 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
 
 
     @Override
-    public Page<DianZan> selectDianZanList(Page<DianZan> page,Integer uid) {
+    public Page<DianZan> selectDianZanList(Page<DianZan> page,String uid) {
         Page<DianZan> dianZans = dianZanMapper.selectDianZanList(page,uid);
         return dianZans;
     }
@@ -99,8 +99,8 @@ public class DianZanServiceImpl extends ServiceImpl<DianZanMapper, DianZan> impl
     false说明用户未点过或者已经取消点赞
      */
     @Override
-    public boolean isToStart(Integer tid, Integer uid) {
-        Integer count = dianZanMapper.getCount(tid, uid);
+    public boolean isToStart(String uid,Integer tid) {
+        Integer count = dianZanMapper.getCount(uid,tid);
         System.out.println(count);
         return count > 0;
     }

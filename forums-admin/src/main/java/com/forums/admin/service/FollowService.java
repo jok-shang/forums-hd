@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FollowService extends IService<Follow> {
 
     // 关注操作
-    boolean follow(Integer userId,Integer folleredUser);
+    boolean follow(String userId,String folleredUser);
 
     // 关注列表
-    Page<Follow> followList(Page<Follow> page,Integer userId);
+    Page<Follow> followList(Page<Follow> page,String userId);
 
     // 判断是否关注
-    boolean pdFollowFlog(Integer userId,Integer followId);
+    boolean pdFollowFlog(String userId,String followId);
 
-    boolean cancelFollow(Integer userId,Integer followedId);
+    boolean cancelFollow(String userId,String followedId);
 }

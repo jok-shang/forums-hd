@@ -30,7 +30,7 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
      * @return
      */
     @Override
-    public boolean follow(Integer userId, Integer folleredUser) {
+    public boolean follow(String userId, String folleredUser) {
         // 向关注表添加数据
         Follow follow = new Follow();
         follow.setUserId(userId);
@@ -45,13 +45,13 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
     }
 
     @Override
-    public Page<Follow> followList(Page<Follow> page, Integer userId) {
+    public Page<Follow> followList(Page<Follow> page, String userId) {
         Page<Follow> allUserList = followMapper.followList(page,userId);
         return allUserList;
     }
 
     @Override
-    public boolean pdFollowFlog(Integer userId, Integer followId) {
+    public boolean pdFollowFlog(String userId, String followId) {
         QueryWrapper<Follow> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id",userId);
         queryWrapper.eq("followed_user",followId);
@@ -60,7 +60,7 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
     }
 
     @Override
-    public boolean cancelFollow(Integer userId, Integer followedId) {
+    public boolean cancelFollow(String userId, String followedId) {
         Integer integer = followMapper.cancelFollow(userId, followedId);
         return integer > 0;
     }

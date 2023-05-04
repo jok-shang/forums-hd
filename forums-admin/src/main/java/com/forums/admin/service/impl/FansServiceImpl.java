@@ -20,13 +20,13 @@ public class FansServiceImpl extends ServiceImpl<FansMapper, Fans> implements Fa
     private FansMapper fansMapper;
 
     @Override
-    public Page<Fans> fansList(Page<Fans> page, Integer userId) {
+    public Page<Fans> fansList(Page<Fans> page, String userId) {
         Page<Fans> fansPage = fansMapper.fansList(page, userId);
         return fansPage;
     }
 
     @Override
-    public boolean cancelFans(Integer userId, Integer followedId) {
+    public boolean cancelFans(String userId, String followedId) {
         Integer integer = fansMapper.cancelFans(userId, followedId);
         return integer > 0;
     }

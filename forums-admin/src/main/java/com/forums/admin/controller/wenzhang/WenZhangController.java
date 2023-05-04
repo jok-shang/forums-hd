@@ -2,12 +2,16 @@ package com.forums.admin.controller.wenzhang;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.forums.admin.config.MinioProperties;
 import com.forums.admin.service.*;
+import com.forums.admin.util.MinioUtil;
 import com.forums.model.pojo.PingLun;
 import com.forums.model.pojo.User;
 import com.forums.model.pojo.WenZhang;
 import com.forums.model.result.Result;
 import com.forums.model.result.WangEditorVO;
+import io.minio.MinioClient;
+import lombok.SneakyThrows;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +40,10 @@ public class WenZhangController {
     private DianZanService dianZanService;
     @Resource
     private ShouCangService shouCangService;
+    @Resource
+    private MinioClient minioClient;
+    @Resource
+    private MinioProperties minioProperties;
 
 
     /**
@@ -72,26 +80,41 @@ public class WenZhangController {
 
 
     /**
+     *  接口一   minio
      * 文章内上传图片接口
      * @param file  图片
      * @return result
      */
+    @SneakyThrows
     @PostMapping("/wzuploadImage")
-    public WangEditorVO WzUploadImage(@RequestParam(value = "file",required = false) MultipartFile file){
-//        List<Map> list = new ArrayList<>();
-        HashMap<String,Object> map = new HashMap<>();
-        if (!file.isEmpty()){
-            String path = uploadImageService.uploadQNImg(file);
-            if (path.equals("失败")){
-                return WangEditorVO.error(3,"上传失败");
-            }else {
-                map.put("url",path);
-//                list.add(map);
-                return WangEditorVO.success(map);
-            }
-        }
-        return WangEditorVO.error(3,"上传失败");
+    public WangEditorVO upload(@RequestParam(value = "file",required = false)MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        MinioUtil.createBucket(minioProperties.getBucket());
+        MinioUtil.uploadFile(minioProperties.getBucket(),file,fileName);
+        String url = MinioUtil.getPreSignedObjectUrl(minioProperties.getBucket(),fileName);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("url",url);
+        return WangEditorVO.success(map);
     }
+    /**
+     * 接口 二 七牛云
+     */
+//    @PostMapping("/wzuploadImage")
+//    public WangEditorVO WzUploadImage(@RequestParam(value = "file",required = false) MultipartFile file){
+////        List<Map> list = new ArrayList<>();
+//        HashMap<String,Object> map = new HashMap<>();
+//        if (!file.isEmpty()){
+//            String path = uploadImageService.uploadQNImg(file);
+//            if (path.equals("失败")){
+//                return WangEditorVO.error(3,"上传失败");
+//            }else {
+//                map.put("url",path);
+////                list.add(map);
+//                return WangEditorVO.success(map);
+//            }
+//        }
+//        return WangEditorVO.error(3,"上传失败");
+//    }
 
     /**
      * 发布文章
@@ -142,7 +165,7 @@ public class WenZhangController {
      * @return
      */
     @GetMapping("getWzByTid")
-    public Result getWzByTid(@Param("tid")Integer tid ,@Param("uid") Integer uid){
+    public Result getWzByTid(@Param("tid")Integer tid ,@Param("uid") String uid){
         // 根据文章id查询文章
         WenZhang byId = wenZhangService.getById(tid);
         // 判断当前用户是否点赞
@@ -155,6 +178,10 @@ public class WenZhangController {
         User userByUid = userService.getUserByUid(byId.getUid());
         // 根据tid查询评论列表
         List<PingLun> list = pingLunService.plList(tid);
+        //TODO  文章测试时间
+        for (int i = 0 ;i<list.size();i++){
+            System.out.println(list.get(i).getCreateTime());
+        }
 
         // 拼接返回参数
         HashMap<String, Object> map = new HashMap<>();

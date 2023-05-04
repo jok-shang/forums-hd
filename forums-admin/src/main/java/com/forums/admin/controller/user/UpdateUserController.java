@@ -2,12 +2,16 @@ package com.forums.admin.controller.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.forums.admin.config.MinioProperties;
 import com.forums.admin.service.UploadImageService;
 import com.forums.admin.service.UserService;
 import com.forums.admin.service.WenZhangService;
 import com.forums.admin.util.MD5Utils;
+import com.forums.admin.util.MinioUtil;
 import com.forums.model.pojo.User;
 import com.forums.model.result.Result;
+import io.minio.MinioClient;
+import lombok.SneakyThrows;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -33,6 +37,10 @@ public class UpdateUserController {
     private UploadImageService uploadImageService;
     @Resource
     private WenZhangService wenZhangService;
+    @Resource
+    private MinioClient minioClient;
+    @Resource
+    private MinioProperties minioProperties;
 
     /**
      * 修改密码1  向用户的邮箱发送验证码
@@ -114,24 +122,41 @@ public class UpdateUserController {
     /**
      * 修改用户头像
      */
+    @SneakyThrows
     @PostMapping("updateImage")
     public Result updateImage(@RequestParam("file") MultipartFile file,
-                              @RequestParam("uid") Integer uid){
-        String result = "失败";
-        if(!file.isEmpty()){
-            String path = uploadImageService.uploadQNImg(file);
-            if(path.equals(result)){
-                return Result.fail();
-            }else{
-                UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+                              @RequestParam("uid") String uid) {
+        String fileName = file.getOriginalFilename();
+        MinioUtil.createBucket(minioProperties.getBucket());
+        MinioUtil.uploadFile(minioProperties.getBucket(),file,fileName);
+        String url = MinioUtil.getPreSignedObjectUrl(minioProperties.getBucket(),fileName);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("url",url);
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
                 updateWrapper.eq("uid",uid);
-                updateWrapper.set("headimage",path);
+                updateWrapper.set("headimage",url);
                 userService.update(updateWrapper);
                 return Result.ok().message("头像修改成功");
-            }
-        }
-        return Result.fail().message("头像修改失败");
+
     }
+//    @PostMapping("updateImage")
+//    public Result updateImage(@RequestParam("file") MultipartFile file,
+//                              @RequestParam("uid") String uid){
+//        String result = "失败";
+//        if(!file.isEmpty()){
+//            String path = uploadImageService.uploadQNImg(file);
+//            if(path.equals(result)){
+//                return Result.fail();
+//            }else{
+//                UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+//                updateWrapper.eq("uid",uid);
+//                updateWrapper.set("headimage",path);
+//                userService.update(updateWrapper);
+//                return Result.ok().message("头像修改成功");
+//            }
+//        }
+//        return Result.fail().message("头像修改失败");
+//    }
 
 
     /**

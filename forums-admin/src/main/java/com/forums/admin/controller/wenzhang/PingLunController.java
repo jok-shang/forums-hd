@@ -30,6 +30,7 @@ public class PingLunController {
     public Result insertPingLun(@RequestBody PingLun pingLun){
         System.out.println(pingLun);
         pingLun.setCreateTime(new Date());
+//        System.out.println(new Date());
         boolean save = pingLunService.save(pingLun);
         return save ? Result.ok().message("发表评论成功") : Result.fail().message("发表评论失败");
     }

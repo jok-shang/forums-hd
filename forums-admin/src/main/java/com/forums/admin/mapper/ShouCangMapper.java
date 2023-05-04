@@ -13,11 +13,11 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ShouCangMapper extends BaseMapper<ShouCang> {
     // 用户收藏列表返回
-    Page<ShouCang> selectShouCangList(@Param("page") Page<ShouCang> page,@Param("uid") Integer uid);
+    Page<ShouCang> selectShouCangList(@Param("page") Page<ShouCang> page,@Param("uid") String uid);
 
     // 删除收藏列表关于此篇文章的记录
     Integer deleteShouCangWz(Integer tid);
 
     // 统计用户是否点过赞
-    Integer getCountS(Integer uid,Integer tid);
+    Integer getCountS(@Param("uid") String uid,@Param("tid") Integer tid);
 }

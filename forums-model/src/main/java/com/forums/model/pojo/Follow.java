@@ -26,11 +26,11 @@ public class Follow {
 
     //  当前登录用户id
     @TableField("user_id")
-    private Integer userId;
+    private String userId;
 
     // 被关注用户id
     @TableField("followed_user")
-    private Integer folleredUser;
+    private String folleredUser;
 
     // 被关注用户列表
     @TableField(exist = false)

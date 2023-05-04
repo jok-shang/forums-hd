@@ -5,7 +5,18 @@ oss:
     accessKey: X46yk_LGEtRxth8E5ORMxkX8HEzNSL1wMpXY_liq
     secretKey: HHzNcNH5XWZ3ZnALNBu2vJhQYrEL-RFVuvwW7qxx
     bucketName: ssimages
-
+#minio配置
+minio:
+  #服务地址
+  endpoint: http://47.99.34.48:9000
+  #文件地址
+  fileHost: http://47.99.34.48:9000
+  #用户名
+  access-Key: admin
+  #密码
+  secret-Key: shjadmin
+  #存储桶地址
+  bucket: springboot
 #spring配置
 spring:
   # 过滤参数为null
@@ -16,14 +27,19 @@ spring:
     host: 47.107.225.176 #redis上服务器需要改
     port: 6379
     database: 0
+    #配置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
-# 数据源配置
+  # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    url: jdbc:mysql://localhost:3306/forum?serverTimezone=UTC
     #    username: root
     #    password: 1234
-    url: jdbc:mysql://47.107.225.176:3306/success?serverTimezone=UTC
+    url: jdbc:mysql://47.107.225.176:3306/success?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: success
     password: 1234
 

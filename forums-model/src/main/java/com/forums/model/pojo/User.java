@@ -1,9 +1,11 @@
 package com.forums.model.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,9 +20,9 @@ import java.util.Date;
 public class User {
 
     /** 用户id */
-    @TableId(value = "uid",type = IdType.AUTO)
+    @TableId(value = "uid",type = IdType.ASSIGN_UUID)
 //    @TableId("uid")
-    private Integer uid;
+    private String uid;
 
     /** 用户名 */
     @TableField("username")
@@ -36,6 +38,8 @@ public class User {
 
     /** 用户创建时间 */
     @TableField(value = "creattime",fill = FieldFill.INSERT)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     /** 用户头像链接 */

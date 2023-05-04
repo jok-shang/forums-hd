@@ -9,6 +9,9 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 /**
  * @auther 尚智江
  * @Date 2023/4/17 20:09
@@ -29,5 +32,9 @@ public class ForumsApplication {
             }
         });
         return factory;
+    }
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
     }
 }

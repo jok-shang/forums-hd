@@ -36,8 +36,8 @@ public class FollowAndFansController {
      * @return
      */
     @PostMapping("insertFollow/{userId}/{folleredUser}")
-    public Result insertFollow(@PathVariable Integer userId,
-                               @PathVariable Integer folleredUser){
+    public Result insertFollow(@PathVariable String userId,
+                               @PathVariable String folleredUser){
         // 关注操作
         boolean follow = followService.follow(userId, folleredUser);
         if (follow){
@@ -56,7 +56,7 @@ public class FollowAndFansController {
     @GetMapping("followList/{current}/{limit}/{userId}")
     public Result followList(@PathVariable Integer current,
                              @PathVariable Integer limit,
-                             @PathVariable Integer userId){
+                             @PathVariable String userId){
         Page<Follow> page = new Page<>(current,limit);
         Page<Follow> flList = followService.followList(page, userId);
         if (flList.getRecords().size() != 0){
@@ -74,7 +74,7 @@ public class FollowAndFansController {
     @GetMapping("fansList/{current}/{limit}/{userId}")
     public Result fansList(@PathVariable Integer current,
                            @PathVariable Integer limit,
-                           @PathVariable Integer userId){
+                           @PathVariable String userId){
         Page<Fans> page = new Page<>(current,limit);
         Page<Fans> fansPage = fansService.fansList(page, userId);
         if (fansPage.getRecords().size() != 0){
@@ -89,8 +89,8 @@ public class FollowAndFansController {
      * @return
      */
     @GetMapping("pdFollow/{userId}/{followId}")
-    public Result pdFollow(@PathVariable Integer userId,
-                           @PathVariable Integer followId){
+    public Result pdFollow(@PathVariable String userId,
+                           @PathVariable String followId){
         HashMap<String, Boolean> map = new HashMap<>();
         boolean b = followService.pdFollowFlog(userId, followId);
         map.put("followFlag",b);
@@ -105,8 +105,8 @@ public class FollowAndFansController {
      * @return
      */
     @PostMapping("cancel/{userId}/{followedId}")
-    public Result cancelFollow(@PathVariable Integer userId,
-                              @PathVariable Integer followedId){
+    public Result cancelFollow(@PathVariable String userId,
+                              @PathVariable String followedId){
         boolean a = followService.cancelFollow(userId, followedId);
         boolean b = fansService.cancelFans(userId,followedId);
         if (a){

@@ -24,10 +24,10 @@ public class Fans {
     private Integer id;
 
     @TableField("user_id")
-    private Integer userId;
+    private String userId;
 
     @TableField("follower_id")
-    private Integer followerId;
+    private String followerId;
 
     @TableField(exist = false)
     private List<User> userList;

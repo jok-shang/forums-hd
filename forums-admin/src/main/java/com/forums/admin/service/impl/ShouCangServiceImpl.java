@@ -65,7 +65,7 @@ public class ShouCangServiceImpl extends ServiceImpl<ShouCangMapper, ShouCang> i
 
     // 返回用户收藏列表
     @Override
-    public Page<ShouCang> selectShouCangList(Page<ShouCang> page, Integer uid) {
+    public Page<ShouCang> selectShouCangList(Page<ShouCang> page, String uid) {
         Page<ShouCang> shouCangPage = shouCangMapper.selectShouCangList(page,uid);
         return shouCangPage;
     }
@@ -75,8 +75,8 @@ public class ShouCangServiceImpl extends ServiceImpl<ShouCangMapper, ShouCang> i
     false说明用户未点过或者已经取消点赞
      */
     @Override
-    public boolean isToShou(Integer tid, Integer uid) {
-        Integer count = shouCangMapper.getCountS(tid, uid);
+    public boolean isToShou(String uid,Integer tid) {
+        Integer count = shouCangMapper.getCountS(uid, tid);
         System.out.println(count);
         return count > 0;
     }

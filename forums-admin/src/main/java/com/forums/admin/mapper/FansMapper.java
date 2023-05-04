@@ -13,11 +13,11 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FansMapper extends BaseMapper<Fans> {
     // 粉丝列表
-    Page<Fans> fansList(@Param("page")Page<Fans> page,@Param("userId") Integer userId);
+    Page<Fans> fansList(@Param("page")Page<Fans> page,@Param("userId") String userId);
 
     // 统计粉丝数
-    Integer fansCount(Integer userId);
+    Integer fansCount(String userId);
 
     // 取消关注操作取消粉丝
-    Integer cancelFans(Integer userId,Integer followedId);
+    Integer cancelFans(String userId,String followedId);
 }

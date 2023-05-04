@@ -52,7 +52,7 @@ public class WenZhangServiceImpl extends ServiceImpl<WenZhangMapper, WenZhang> i
     }
 
     @Override
-    public HashMap<String, Integer> getUserCount(Integer userId) {
+    public HashMap<String, Integer> getUserCount(String userId) {
         // 用户关注数
         Integer integer = followMapper.followCount(userId);
         // 用户粉丝数
