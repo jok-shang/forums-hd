@@ -6,4 +6,4 @@
 <li>Mybatis-Plus</li>
 <li>Redis</li>
 <li>JWT</li>
-<li>图片存储采用七牛云</li>
+<li>图片存储采用minio</li>
